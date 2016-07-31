@@ -103,6 +103,7 @@ def get_args():
     parser.add_argument('-wh', '--webhook', help='Define URL(s) to POST webhook information to',
                         nargs='*', default=False, dest='webhooks')
     parser.add_argument('--pokel-pass', help='Password for Pokelizer database')
+    parser.add_argument('--pokel-era', help='Current Migration Era',type=int, default=2)
     parser.set_defaults(DEBUG=False)
 
     args = parser.parse_args()

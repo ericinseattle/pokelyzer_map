@@ -51,8 +51,12 @@ def logPokemonDb(p):
     longitude_jittered = longitude + random.gauss(0, 0.3) * 0.0005
     latitude_jittered = latitude + random.gauss(0, 0.3) * 0.0005
 
-    query =  "INSERT INTO spotted_pokemon (name, encounter_id, last_modified_time, time_until_hidden_ms, hidden_time_unix_s, hidden_time_utc, spawnpoint_id, longitude, latitude, pokemon_id, longitude_jittered, latitude_jittered) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON CONFLICT (encounter_id) DO UPDATE SET last_modified_time = EXCLUDED.last_modified_time, time_until_hidden_ms = EXCLUDED.time_until_hidden_ms, hidden_time_unix_s = EXCLUDED.hidden_time_unix_s, hidden_time_utc = EXCLUDED.hidden_time_utc;"
+    pokemon_go_era = args.pokel_era
 
-    data = (pokemon_name, encounter_id, last_modified_time, time_until_hidden_ms, hidden_time_unix_s, hidden_time_utc, spawnpoint_id, longitude, latitude, pokemon_id, longitude_jittered, latitude_jittered)
+    query =  "INSERT INTO spotted_pokemon (name, encounter_id, last_modified_time, time_until_hidden_ms, hidden_time_unix_s, hidden_time_utc, spawnpoint_id, longitude, latitude, pokemon_id, longitude_jittered, latitude_jittered, pokemon_go_era) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON CONFLICT (encounter_id) DO UPDATE SET last_modified_time = EXCLUDED.last_modified_time, time_until_hidden_ms = EXCLUDED.time_until_hidden_ms, hidden_time_unix_s = EXCLUDED.hidden_time_unix_s, hidden_time_utc = EXCLUDED.hidden_time_utc;"
+
+    data = (pokemon_name, encounter_id, last_modified_time, time_until_hidden_ms, hidden_time_unix_s, hidden_time_utc, spawnpoint_id, longitude, latitude, pokemon_id, longitude_jittered, latitude_jittered, pokemon_go_era)
 
     cursor.execute(query, data)
+
+   
